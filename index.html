@@ -9,28 +9,133 @@
 
     <!-- Telegram Mini App Script -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <style>
+        /* تنظیمات کلی صفحه */
+        body {
+            background-color: #0F0F0F;
+            color: #FFFFFF;
+
+            font-family: Arial, sans-serif;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 100vh;
+            margin: 0;
+
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        /* عنوان */
+        h2 {
+            color: #FFFFFF;
+            margin-bottom: 20px;
+        }
+
+        /* کادر وارد کردن اسم */
+        #userName {
+            width: 100%;
+            max-width: 300px;
+
+            padding: 14px 18px;
+
+            background-color: #1A1A1A;
+            color: #FFFFFF;
+
+            border: 2px solid #8A2BE2;
+            border-radius: 18px;
+
+            font-size: 16px;
+
+            outline: none;
+            box-sizing: border-box;
+
+            transition: border-color 0.3s ease;
+        }
+
+        /* رنگ متن Placeholder */
+        #userName::placeholder {
+            color: #AAAAAA;
+        }
+
+        /* حالت انتخاب کادر */
+        #userName:focus {
+            border-color: #A855F7;
+        }
+
+        /* دکمه Enter */
+        #enterButton {
+            width: 100%;
+            max-width: 300px;
+
+            margin-top: 18px;
+            padding: 14px;
+
+            background-color: #8A2BE2;
+            color: #FFFFFF;
+
+            border: none;
+            border-radius: 18px;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: background-color 0.3s ease,
+                        transform 0.2s ease;
+        }
+
+        /* حالت هاور */
+        #enterButton:hover {
+            background-color: #9932CC;
+        }
+
+        /* حالت کلیک */
+        #enterButton:active {
+            transform: scale(0.96);
+        }
+
+        /* نتیجه */
+        #result {
+            color: #FFFFFF;
+
+            margin-top: 25px;
+
+            font-size: 28px;
+            text-align: center;
+
+            overflow-wrap: anywhere;
+        }
+
+    </style>
 </head>
 
 <body>
 
-    <h2>Enter your name:</h2>
+    <h2>Enter your name</h2>
 
-    <!-- Input: دریافت اسم کاربر -->
+    <!-- Input -->
     <input
         type="text"
         id="userName"
         placeholder="Enter your name"
     >
 
-    <!-- Button: اجرای عملیات -->
-    <button id="enterButton" style="background-color: green;">Enter</button>
+    <!-- Enter Button -->
+    <button id="enterButton">Enter</button>
 
-    <!-- نمایش نتیجه -->
+    <!-- Result -->
     <h1 id="result"></h1>
 
     <script>
         // Telegram Mini App
         const tg = window.Telegram.WebApp;
+
         tg.ready();
         tg.expand();
 
@@ -53,6 +158,14 @@
             }
 
         });
+
+        // اجرای Enter از طریق کیبورد
+        userName.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                enterButton.click();
+            }
+        });
+
     </script>
 
 </body>
