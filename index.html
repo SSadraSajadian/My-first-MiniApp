@@ -2,12 +2,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello World</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My First Mini App</title>
+
+    <!-- Telegram Mini App Script -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
+
 <body>
-  Hello world
+
+    <h2>Enter your name:</h2>
+
+    <!-- Input: دریافت اسم کاربر -->
+    <input
+        type="text"
+        id="userName"
+        placeholder="Enter your name"
+    >
+
+    <!-- Button: اجرای عملیات -->
+    <button id="enterButton">Enter</button>
+
+    <!-- نمایش نتیجه -->
+    <h1 id="result"></h1>
+
+    <script>
+        // Telegram Mini App
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+
+        // دریافت المان‌های HTML
+        const userName = document.getElementById("userName");
+        const enterButton = document.getElementById("enterButton");
+        const result = document.getElementById("result");
+
+        // عملکرد دکمه Enter
+        enterButton.addEventListener("click", function() {
+
+            // دریافت اسم وارد شده
+            const name = userName.value.trim();
+
+            // نمایش پیام
+            if (name !== "") {
+                result.textContent = "Hello " + name;
+            } else {
+                result.textContent = "Please enter your name!";
+            }
+
+        });
+    </script>
+
 </body>
 </html>
